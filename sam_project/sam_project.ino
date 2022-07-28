@@ -20,14 +20,6 @@ String tagID = "";
 //Mobile phone number,need to change
 #define PHONE_NUMBER "187*******39"  
  
-//The content of messages sent
- char arr2[5][20] = { {"first string"},
-                                          {"second string"},
-                                          {"third string"},
-                                          {"fourth string"},
-                                          {"fifth string"} 
-                                          
-                                          };
 
 
 
@@ -43,8 +35,8 @@ const int ldrPin5= A4; // analog pin 0
 const int ldrPin6= A5; // analog pin 0
 const int ldrPin7= A6; // analog pin 0
 const int ldrPin8= A7; // analog pin 0
-const int ldrPin9= A8; // analog pin 0
-const int ldrPin10= A9; // analog pin 0
+//const int ldrPin9= A8; // analog pin 0
+//const int ldrPin10= A9; // analog pin 0
 
 
 int bookState1 =0;
@@ -83,9 +75,9 @@ pinMode(ldrPin4, INPUT);
 pinMode(ldrPin5, INPUT);
 pinMode(ldrPin6, INPUT);
 pinMode(ldrPin7, INPUT);
-pinMode(ldrPin8, INPUT);
-pinMode(ldrPin9, INPUT);
-pinMode(ldrPin10, INPUT);
+//pinMode(ldrPin8, INPUT);
+//pinMode(ldrPin9, INPUT);
+//pinMode(ldrPin10, INPUT);
 
  
  //******** Initialize sim808 module *************
@@ -109,9 +101,9 @@ int ldrStatus4 = analogRead(ldrPin4);
 int ldrStatus5 = analogRead(ldrPin5);
 int ldrStatus6 = analogRead(ldrPin6);
 int ldrStatus7 = analogRead(ldrPin7);
-int ldrStatus8 = analogRead(ldrPin8);
-int ldrStatus9 = analogRead(ldrPin9);
-int ldrStatus10 = analogRead(ldrPin10);
+//int ldrStatus8 = analogRead(ldrPin8);
+//int ldrStatus9 = analogRead(ldrPin9);
+//int ldrStatus10 = analogRead(ldrPin10);
 
 
 
