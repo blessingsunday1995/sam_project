@@ -8,6 +8,8 @@
 #include <Wire.h> 
 
 
+int lock = 10;
+
 #define RST_PIN 9
 #define SS_PIN 8
 
@@ -18,14 +20,57 @@ String tagID = "";
 
 
 //Mobile phone number,need to change
-#define PHONE_NUMBER "187*******39"  
+#define PHONE_NUMBER "08131971666"  
  
 
 
 
 
 
-#define MESSAGE  "hello,world"
+#define Book_Taken1  "A Book is taken from shelf 1"
+#define Book_Return1  "A Book have been return to shelf 1"
+
+#define Book_Taken2  "A Book is taken from shelf 2"
+#define Book_Return2  "A Book have been return to shelf 2"
+
+#define Book_Taken3  "A Book is taken from shelf 3"
+#define Book_Return3  "A Book have been return to shelf 3"
+
+#define Book_Taken4  "A Book is taken from shelf 4"
+#define Book_Return4  "A Book have been return to shelf 4"
+
+#define Book_Taken5  "A Book is taken from shelf 5"
+#define Book_Return5  "A Book have been return to shelf 5"
+
+#define Book_Taken6  "A Book is taken from shelf 6"
+#define Book_Return6  "A Book have been return to shelf 6"
+
+#define Book_Taken7  "A Book is taken from shelf 7"
+#define Book_Return7  "A Book have been return to shelf 7"
+
+#define Book_Taken8  "A Book is taken from shelf 8"
+#define Book_Return8  "A Book have been return to shelf 8"
+
+#define Book_Taken9  "A Book is taken from shelf 9"
+#define Book_Return9  "A Book have been return to shelf 9"
+
+#define Book_Taken10  "A Book is taken from shelf 10"
+#define Book_Return10  "A Book have been return to shelf 10"
+
+#define Book_Taken11  "A Book is taken from shelf 11"
+#define Book_Return11  "A Book have been return to shelf 11"
+
+#define Book_Taken12  "A Book is taken from shelf 12"
+#define Book_Return12  "A Book have been return to shelf 12"
+
+#define Book_Taken13  "A Book is taken from shelf 13"
+#define Book_Return13  "A Book have been return to shelf 13"
+
+#define Book_Taken14  "A Book is taken from shelf 14"
+#define Book_Return14  "A Book have been return to shelf 14"
+
+#define Book_Taken15  "A Book is taken from shelf 15"
+#define Book_Return15  "A Book have been return to shelf 15"
 
 const int ldrPin1 = A0; // analog pin 0
 const int ldrPin2= A1; // analog pin 0
@@ -35,8 +80,8 @@ const int ldrPin5= A4; // analog pin 0
 const int ldrPin6= A5; // analog pin 0
 const int ldrPin7= A6; // analog pin 0
 const int ldrPin8= A7; // analog pin 0
-//const int ldrPin9= A8; // analog pin 0
-//const int ldrPin10= A9; // analog pin 0
+const int ldrPin9= A8; // analog pin 0
+const int ldrPin10= A9; // analog pin 0
 
 
 int bookState1 =0;
@@ -75,9 +120,11 @@ pinMode(ldrPin4, INPUT);
 pinMode(ldrPin5, INPUT);
 pinMode(ldrPin6, INPUT);
 pinMode(ldrPin7, INPUT);
-//pinMode(ldrPin8, INPUT);
-//pinMode(ldrPin9, INPUT);
-//pinMode(ldrPin10, INPUT);
+pinMode(ldrPin8, INPUT);
+pinMode(ldrPin9, INPUT);
+pinMode(ldrPin10, INPUT);
+
+pinMode(lock,OUTPUT);
 
  
  //******** Initialize sim808 module *************
@@ -89,7 +136,7 @@ pinMode(ldrPin7, INPUT);
   Serial.println("Start to send message ...");
 
   //******** define phone number and text **********
-  sim808.sendSMS(PHONE_NUMBER,MESSAGE); 
+ 
 }
 
 void loop() {
@@ -101,9 +148,9 @@ int ldrStatus4 = analogRead(ldrPin4);
 int ldrStatus5 = analogRead(ldrPin5);
 int ldrStatus6 = analogRead(ldrPin6);
 int ldrStatus7 = analogRead(ldrPin7);
-//int ldrStatus8 = analogRead(ldrPin8);
-//int ldrStatus9 = analogRead(ldrPin9);
-//int ldrStatus10 = analogRead(ldrPin10);
+int ldrStatus8 = analogRead(ldrPin8);
+int ldrStatus9 = analogRead(ldrPin9);
+int ldrStatus10 = analogRead(ldrPin10);
 
 
 
@@ -114,14 +161,14 @@ int ldrStatus7 = analogRead(ldrPin7);
     if (tagID == MasterTag || "97E3104E") 
     {
 
-
+      digitalWrite(lock,HIGH);
  
     }
     else
     {
 
 
-
+ digitalWrite(lock,LOW);
 
     }
 
@@ -134,18 +181,161 @@ int ldrStatus7 = analogRead(ldrPin7);
 if (ldrStatus1 <= 200 && bookState1 == 0) {
 
 bookState1++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken1); 
 Serial.print("Darkness over here,turn on the LED : ");
 
 Serial.println(ldrStatus1);
 
-} else {
+} else if(ldrStatus1 >= 200 && bookState1 == 1){
 
 bookState1 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return1); 
 Serial.print("There is sufficeint light , turn off the LED : ");
 
 Serial.println(ldrStatus1);
 
 }
+
+
+if (ldrStatus2 <= 200 && bookState2 == 0) {
+
+bookState2++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken2); 
+
+} else if(ldrStatus2 >= 200 && bookState2 == 1){
+
+bookState2 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return2); 
+
+}
+
+
+if (ldrStatus3 <= 200 && bookState3 == 0) {
+
+bookState3++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken3); 
+
+} else if(ldrStatus3 >= 200 && bookState3 == 1){
+
+bookState3 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return3); 
+
+}
+
+
+if (ldrStatus4 <= 200 && bookState4 == 0) {
+
+bookState4++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken4); 
+
+} else if(ldrStatus4 >= 200 && bookState4 == 1){
+
+bookState4 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return4); 
+
+}
+
+
+if (ldrStatus5 <= 200 && bookState5 == 0) {
+
+bookState5++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken5); 
+
+} else if(ldrStatus5 >= 200 && bookState5 == 1){
+
+bookState5 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return5); 
+
+}
+
+
+if (ldrStatus6 <= 200 && bookState6 == 0) {
+
+bookState6++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken6); 
+
+} else if(ldrStatus6 >= 200 && bookState6 == 1){
+
+bookState6 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return6); 
+
+}
+
+
+if (ldrStatus7 <= 200 && bookState7 == 0) {
+
+bookState7++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken7); 
+
+} else if(ldrStatus7 >= 200 && bookState5 == 7){
+
+bookState7 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return7); 
+
+}
+
+
+if (ldrStatus8 <= 200 && bookState8 == 0) {
+
+bookState8++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken8); 
+
+} else if(ldrStatus8 >= 200 && bookState8 == 1){
+
+bookState8 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return8); 
+
+}
+
+
+if (ldrStatus9 <= 200 && bookState9 == 0) {
+
+bookState9++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken9); 
+
+} else if(ldrStatus9 >= 200 && bookState9 == 1){
+
+bookState9 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return9); 
+
+}
+
+
+if (ldrStatus10 <= 200 && bookState10 == 0) {
+
+bookState10++;
+ sim808.sendSMS(PHONE_NUMBER,Book_Taken10); 
+
+} else if(ldrStatus10 >= 200 && bookState10 == 1){
+
+bookState10 = 0; 
+ sim808.sendSMS(PHONE_NUMBER,Book_Return10); 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 }
