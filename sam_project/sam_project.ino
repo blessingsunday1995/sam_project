@@ -8,7 +8,7 @@
 #include <Wire.h> 
 
 
-int lock = 10;
+int lock = 7;
 
 #define RST_PIN 9
 #define SS_PIN 8
