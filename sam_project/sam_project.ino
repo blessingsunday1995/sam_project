@@ -10,8 +10,8 @@
 
 int lock = 7;
 
-#define RST_PIN 9
-#define SS_PIN 8
+#define RST_PIN 8
+#define SS_PIN 9
 
 
 byte readCard[4];
@@ -133,7 +133,7 @@ pinMode(lock,OUTPUT);
       Serial.print("Sim808 init error\r\n");
   }  
   Serial.println("Sim808 init success");
-  Serial.println("Start to send message ...");
+
 
   //******** define phone number and text **********
  
@@ -152,23 +152,24 @@ int ldrStatus8 = analogRead(ldrPin8);
 int ldrStatus9 = analogRead(ldrPin9);
 int ldrStatus10 = analogRead(ldrPin10);
 
-
+  Serial.println("worling");
 
 
  //Wait until new tag is available
   while (getID()){
   
-    if (tagID == MasterTag || "97E3104E") 
+    if (tagID == "4A3BB082"  ||tagID == "778FD5A6") 
     {
 
       digitalWrite(lock,HIGH);
+      delay(3000);
+        digitalWrite(lock,LOW);
+  Serial.println(tagID);
  
     }
     else
     {
 
-
- digitalWrite(lock,LOW);
 
     }
 
